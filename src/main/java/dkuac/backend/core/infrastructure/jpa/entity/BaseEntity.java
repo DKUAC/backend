@@ -1,4 +1,4 @@
-package dkuac.backend.common.infrastructure.jpa.entity;
+package dkuac.backend.core.infrastructure.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

@@ -1,6 +1,6 @@
 package dkuac.backend.member.infrastructure.persistence.jpa.entity;
 
-import dkuac.backend.common.infrastructure.jpa.entity.BaseEntity;
+import dkuac.backend.core.infrastructure.jpa.entity.BaseEntity;
 import dkuac.backend.member.domain.entity.Member;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

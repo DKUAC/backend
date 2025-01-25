@@ -1,4 +1,4 @@
-package dkuac.backend.common.presentation;
+package dkuac.backend.core.presentation;
 
 import org.springframework.http.HttpStatus;
 
