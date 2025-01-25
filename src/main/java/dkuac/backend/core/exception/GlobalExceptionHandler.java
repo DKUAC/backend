@@ -1,6 +1,6 @@
-package dkuac.backend.common.exception;
+package dkuac.backend.core.exception;
 
-import dkuac.backend.common.presentation.ErrorResponse;
+import dkuac.backend.core.presentation.ErrorResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;

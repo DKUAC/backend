@@ -1,7 +1,7 @@
-package dkuac.backend.common.exception;
+package dkuac.backend.core.exception;
 
 
-import dkuac.backend.common.exception.error.BaseErrorCode;
+import dkuac.backend.core.exception.error.BaseErrorCode;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 

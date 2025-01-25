@@ -1,4 +1,4 @@
-package dkuac.backend.common.exception.error;
+package dkuac.backend.core.exception.error;
 
 import org.springframework.http.HttpStatus;
 
