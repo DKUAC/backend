@@ -1,5 +1,6 @@
 package dkuac.backend.member.domain.entity;
 
+import dkuac.backend.auth.domain.entity.HashedPassword;
 import dkuac.backend.member.infrastructure.persistence.jpa.entity.MemberJpaEntity;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,7 +25,7 @@ public class Member {
 
     private String major;
 
-    private String password;
+    private HashedPassword password;
 
     private boolean isStaff;
 
@@ -38,15 +39,15 @@ public class Member {
 
     private Boolean deleted;
 
-    public static Member create(String name, String email, int studentNumber, String major, String birth, String phone) {
-        LocalDate birthDate = LocalDate.parse(birth);
+    public static Member create(String name, String email, HashedPassword hashedPassword, int studentNumber, String major, String birth, String phone) {
         return Member.builder()
                 .id(null)
                 .name(name)
                 .email(email)
                 .studentNumber(studentNumber)
+                .password(hashedPassword)
                 .major(major)
-                .birth(birthDate)
+                .birth(LocalDate.parse(birth))
                 .phone(phone)
                 .isStaff(false)
                 .isCurrentSemesterMember(true)
@@ -63,7 +64,7 @@ public class Member {
                 .birth(memberJpaEntity.getBirth())
                 .phone(memberJpaEntity.getPhone())
                 .major(memberJpaEntity.getMajor())
-                .password(memberJpaEntity.getPassword())
+                .password(HashedPassword.of(memberJpaEntity.getPassword()))
                 .isStaff(memberJpaEntity.isStaff())
                 .isCurrentSemesterMember(memberJpaEntity.isCurrentSemesterMember())
                 .isPaid(memberJpaEntity.isPaid())
