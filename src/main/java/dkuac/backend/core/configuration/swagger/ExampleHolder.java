@@ -1,4 +1,4 @@
-package dkuac.backend.core.configuration;
+package dkuac.backend.core.configuration.swagger;
 
 import io.swagger.v3.oas.models.examples.Example;
 import lombok.Builder;

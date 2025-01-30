@@ -1,4 +1,4 @@
-package dkuac.backend.core.configuration;
+package dkuac.backend.core.configuration.swagger;
 
 import dkuac.backend.core.exception.error.BaseErrorCode;
 import dkuac.backend.core.presentation.ErrorResponse;
