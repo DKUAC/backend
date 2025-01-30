@@ -35,5 +35,21 @@ public class MemberRepositoryImpl implements MemberRepository {
         return memberMapper.toDomainEntity(memberJpaEntity);
     }
 
+    @Override
+    public Member findByStudentNumber(int studentNumber) {
+        MemberJpaEntity memberJpaEntity = memberJpaRepository.findByStudentNumber(studentNumber).orElse(null);
+        if (memberJpaEntity == null) {
+            return null;
+        }
+        return memberMapper.toDomainEntity(memberJpaEntity);
+    }
 
+    @Override
+    public Member findByStudentEmail(String email) {
+        MemberJpaEntity memberJpaEntity = memberJpaRepository.findByEmail(email).orElse(null);
+        if (memberJpaEntity == null) {
+            return null;
+        }
+        return memberMapper.toDomainEntity(memberJpaEntity);
+    }
 }
