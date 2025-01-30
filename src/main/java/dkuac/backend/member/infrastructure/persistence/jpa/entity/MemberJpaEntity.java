@@ -21,6 +21,8 @@ public class MemberJpaEntity extends BaseEntity {
 
     private String name;
 
+    private String email;
+
     private int studentNumber;
 
     private LocalDate birth;
@@ -41,6 +43,7 @@ public class MemberJpaEntity extends BaseEntity {
         return MemberJpaEntity.builder()
                 .id(member.getId())
                 .name(member.getName())
+                .email(member.getEmail())
                 .studentNumber(member.getStudentNumber())
                 .birth(member.getBirth())
                 .phone(member.getPhone())
