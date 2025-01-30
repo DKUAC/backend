@@ -1,7 +1,7 @@
 package dkuac.backend.auth.presentation.swagger;
 
 import dkuac.backend.auth.presentation.dto.reqeust.SignUpRequest;
-import dkuac.backend.core.configuration.ApiErrorCode;
+import dkuac.backend.core.configuration.swagger.ApiErrorCode;
 import dkuac.backend.core.exception.error.GlobalErrorCode;
 import dkuac.backend.core.presentation.RestResponse;
 import dkuac.backend.member.exception.MemberErrorCode;
