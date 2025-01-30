@@ -40,6 +40,7 @@ public class MemberJpaEntity extends BaseEntity {
     private boolean isPaid;
 
     public static MemberJpaEntity toJpaEntity(Member member) {
+
         return MemberJpaEntity.builder()
                 .id(member.getId())
                 .name(member.getName())
@@ -48,7 +49,7 @@ public class MemberJpaEntity extends BaseEntity {
                 .birth(member.getBirth())
                 .phone(member.getPhone())
                 .major(member.getMajor())
-                .password(member.getPassword())
+                .password(member.getPassword().getValue())
                 .isStaff(member.isStaff())
                 .isCurrentSemesterMember(member.isCurrentSemesterMember())
                 .isPaid(member.isPaid())
