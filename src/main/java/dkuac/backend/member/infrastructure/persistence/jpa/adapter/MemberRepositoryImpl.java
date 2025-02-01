@@ -9,21 +9,14 @@ import dkuac.backend.member.infrastructure.persistence.jpa.repository.MemberJpaR
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 @RequiredArgsConstructor
 public class MemberRepositoryImpl implements MemberRepository {
 
     private final MemberMapper memberMapper;
     private final MemberJpaRepository memberJpaRepository;
-
-    @Override
-    public Member findById(Long id) {
-        MemberJpaEntity memberJpaEntity = memberJpaRepository.findById(id).orElse(null);
-        if (memberJpaEntity == null) {
-            return null;
-        }
-        return memberMapper.toDomainEntity(memberJpaEntity);
-    }
 
     @Override
     public Member save(Member member) {
@@ -36,20 +29,22 @@ public class MemberRepositoryImpl implements MemberRepository {
     }
 
     @Override
-    public Member findByStudentNumber(int studentNumber) {
-        MemberJpaEntity memberJpaEntity = memberJpaRepository.findByStudentNumber(studentNumber).orElse(null);
-        if (memberJpaEntity == null) {
-            return null;
-        }
-        return memberMapper.toDomainEntity(memberJpaEntity);
+    public Optional<Member> findById(Long id) {
+        return memberJpaRepository.findById(id).map(memberMapper::toDomainEntity);
     }
 
     @Override
-    public Member findByStudentEmail(String email) {
-        MemberJpaEntity memberJpaEntity = memberJpaRepository.findByEmail(email).orElse(null);
-        if (memberJpaEntity == null) {
-            return null;
-        }
-        return memberMapper.toDomainEntity(memberJpaEntity);
+    public Optional<Member> findByStudentNumber(int studentNumber) {
+        return memberJpaRepository.findByStudentNumber(studentNumber).map(memberMapper::toDomainEntity);
+    }
+
+    @Override
+    public Optional<Member> findByStudentEmail(String email) {
+        return memberJpaRepository.findByEmail(email).map(memberMapper::toDomainEntity);
+    }
+
+    @Override
+    public Optional<Member> findByStudentName(String name) {
+        return memberJpaRepository.findByName(name).map(memberMapper::toDomainEntity);
     }
 }
