@@ -5,5 +5,5 @@ import dkuac.backend.auth.domain.entity.Password;
 
 public interface PasswordHashingService {
     HashedPassword hash(Password password);
-    boolean matches(Password rawPassword, HashedPassword hashedPassword);
+    void matches(String rawPassword, HashedPassword hashedPassword);
 }

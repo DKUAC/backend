@@ -3,6 +3,7 @@ package dkuac.backend.auth.infrastructure;
 import dkuac.backend.auth.application.PasswordHashingService;
 import dkuac.backend.auth.domain.entity.HashedPassword;
 import dkuac.backend.auth.domain.entity.Password;
+import dkuac.backend.auth.exception.AuthenticationErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,9 @@ public class BcryptPasswordHashingService implements PasswordHashingService {
     }
 
     @Override
-    public boolean matches(Password rawPassword, HashedPassword hashedPassword) {
-        return passwordEncoder.matches(rawPassword.getValue(), hashedPassword.getValue());
+    public void matches(String rawPassword, HashedPassword hashedPassword) {
+        if (!passwordEncoder.matches(rawPassword, hashedPassword.getValue())) {
+            throw AuthenticationErrorCode.PASSWORD_NOT_MATCH.toException();
+        }
     }
 }
