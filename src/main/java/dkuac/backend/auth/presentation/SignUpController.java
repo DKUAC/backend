@@ -28,7 +28,4 @@ public class SignUpController implements SignUpSwagger {
                 new RestResponse<>("회원가입에 성공했습니다.")
         );
     }
-
-    public static class LoginController {
-    }
 }

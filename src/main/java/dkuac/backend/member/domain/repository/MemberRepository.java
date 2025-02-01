@@ -2,9 +2,12 @@ package dkuac.backend.member.domain.repository;
 
 import dkuac.backend.member.domain.entity.Member;
 
+import java.util.Optional;
+
 public interface MemberRepository {
-    Member findById(Long id);
     Member save(Member member);
-    Member findByStudentNumber(int studentNumber);
-    Member findByStudentEmail(String email);
+    Optional<Member> findById(Long id);
+    Optional<Member> findByStudentNumber(int studentNumber);
+    Optional<Member> findByStudentEmail(String email);
+    Optional<Member> findByStudentName(String name);
 }

@@ -33,14 +33,12 @@ public class SignUpService {
 
 
     private void validate(SignUpRequest request) {
-        if (memberRepository.findByStudentEmail(request.email()) != null) {
+        if (memberRepository.findByStudentEmail(request.email()).isPresent()) {
             throw MemberErrorCode.MEMBER_ALREADY_EXISTS.toException();
         }
 
-        if (memberRepository.findByStudentNumber(request.studentNumber()) != null) {
+        if (memberRepository.findByStudentNumber(request.studentNumber()).isPresent()) {
             throw MemberErrorCode.MEMBER_ALREADY_EXISTS.toException();
         }
     }
-
-    ;
 }
