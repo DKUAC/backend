@@ -29,4 +29,6 @@ public class SignUpController implements SignUpSwagger {
         );
     }
 
+    public static class LoginController {
+    }
 }
