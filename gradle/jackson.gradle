@@ -1,0 +1,4 @@
+dependencies {
+    // Serialize & Deserialize
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2'
+}
