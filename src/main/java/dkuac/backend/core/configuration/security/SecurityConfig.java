@@ -1,5 +1,6 @@
 package dkuac.backend.core.configuration.security;
 
+import dkuac.backend.core.infrastructure.filter.ExceptionHandlerFilter;
 import dkuac.backend.core.infrastructure.filter.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final ExceptionHandlerFilter exceptionHandlerFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -40,7 +42,11 @@ public class SecurityConfig {
                                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                                 .requestMatchers("/auth/**").permitAll()
                                 .anyRequest().authenticated()
-                ).addFilterBefore(
+                )
+                .addFilterBefore(
+                        exceptionHandlerFilter, UsernamePasswordAuthenticationFilter.class
+                )
+                .addFilterBefore(
                         jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class
                 );
         return http.build();
