@@ -5,7 +5,6 @@ import dkuac.backend.member.infrastructure.persistence.jpa.entity.MemberJpaEntit
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -17,21 +16,7 @@ public class Member {
 
     private String email;
 
-    private int studentNumber;
-
-    private LocalDate birth;
-
-    private String phone;
-
-    private String major;
-
     private HashedPassword password;
-
-    private boolean isStaff;
-
-    private boolean isCurrentSemesterMember;
-
-    private boolean isPaid;
 
     private LocalDateTime createdAt;
 
@@ -39,19 +24,12 @@ public class Member {
 
     private Boolean deleted;
 
-    public static Member create(String name, String email, HashedPassword hashedPassword, int studentNumber, String major, String birth, String phone) {
+    public static Member create(String name, String email, HashedPassword hashedPassword) {
         return Member.builder()
                 .id(null)
                 .name(name)
                 .email(email)
-                .studentNumber(studentNumber)
                 .password(hashedPassword)
-                .major(major)
-                .birth(LocalDate.parse(birth))
-                .phone(phone)
-                .isStaff(false)
-                .isCurrentSemesterMember(true)
-                .isPaid(false)
                 .build();
     }
 
@@ -60,14 +38,7 @@ public class Member {
                 .id(memberJpaEntity.getId())
                 .name(memberJpaEntity.getName())
                 .email(memberJpaEntity.getEmail())
-                .studentNumber(memberJpaEntity.getStudentNumber())
-                .birth(memberJpaEntity.getBirth())
-                .phone(memberJpaEntity.getPhone())
-                .major(memberJpaEntity.getMajor())
                 .password(HashedPassword.of(memberJpaEntity.getPassword()))
-                .isStaff(memberJpaEntity.isStaff())
-                .isCurrentSemesterMember(memberJpaEntity.isCurrentSemesterMember())
-                .isPaid(memberJpaEntity.isPaid())
                 .createdAt(memberJpaEntity.getCreatedAt())
                 .updatedAt(memberJpaEntity.getUpdatedAt())
                 .deleted(memberJpaEntity.getDeleted())
