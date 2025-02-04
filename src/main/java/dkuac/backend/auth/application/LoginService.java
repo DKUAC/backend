@@ -17,7 +17,7 @@ public class LoginService {
     private final TokenProvider tokenProvider;
 
     public LoginResponse login(LoginRequest request) {
-        Member member = memberRepository.findByStudentNumber(request.studentNumber()).orElseThrow(MemberErrorCode.MEMBER_NOT_EXISTS::toException);
+        Member member = memberRepository.findByEmail(request.email()).orElseThrow(MemberErrorCode.MEMBER_NOT_EXISTS::toException);
         passwordHashingService.matches(request.password(), member.getPassword());
         String accessToken = tokenProvider.provideAccessToken(member);
         return LoginResponse.of(

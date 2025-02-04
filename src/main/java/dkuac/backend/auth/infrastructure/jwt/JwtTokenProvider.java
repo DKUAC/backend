@@ -91,16 +91,14 @@ public class JwtTokenProvider implements TokenProvider {
             claims = Map.of(
                     "iss", jwtProperties.getIssuer(),
                     "sub", member.getId().toString(),
-                    "type", type.getType(),
-                    "studentId", member.getStudentNumber()
+                    "type", type.getType()
             );
 
         } else {
             expiryDate = Date.from(Instant.now().plus(expiration, ChronoUnit.DAYS));
             claims = Map.of(
                     "sub", member.getId().toString(),
-                    "type", type.getType(),
-                    "studentId", member.getStudentNumber()
+                    "type", type.getType()
             );
         }
         return Jwts.builder()
