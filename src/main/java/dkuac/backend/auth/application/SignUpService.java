@@ -17,27 +17,18 @@ public class SignUpService {
 
     public void signUp(SignUpRequest request) {
         validate(request);
-        Password password = Password.fromPhone(request.phone());
+        Password password = Password.from(request.password());
         HashedPassword hashedPassword = passwordHashingService.hash(password);
         Member newMember = Member.create(
                 request.name(),
                 request.email(),
-                hashedPassword,
-                request.studentNumber(),
-                request.major(),
-                request.birth(),
-                request.phone()
+                hashedPassword
         );
         memberRepository.save(newMember);
     }
 
-
     private void validate(SignUpRequest request) {
-        if (memberRepository.findByStudentEmail(request.email()).isPresent()) {
-            throw MemberErrorCode.MEMBER_ALREADY_EXISTS.toException();
-        }
-
-        if (memberRepository.findByStudentNumber(request.studentNumber()).isPresent()) {
+        if (memberRepository.findByName(request.name()).isPresent()) {
             throw MemberErrorCode.MEMBER_ALREADY_EXISTS.toException();
         }
     }

@@ -4,7 +4,6 @@ import lombok.Value;
 
 @Value
 public class Password {
-    private static final String PHONE_PREFIX = "010";
     String value;
 
     private Password(String value) {
@@ -12,17 +11,17 @@ public class Password {
         this.value = value;
     }
 
-    public static Password fromPhone(String phone) {
-        return new Password(phone.replace(PHONE_PREFIX, ""));
-    }
-
-    public static Password of(String password) {
-        return new Password(password);
+    public static Password from(String value) {
+        return new Password(value);
     }
 
     private void validate(String password) {
-        if (password == null || password.length() < 8) {
-            throw new IllegalArgumentException("비밀번호는 최소 8자 이상이어야 합니다.");
+        if (!checkPasswordPattern(password)) {
+            throw new IllegalArgumentException("비밀번호는 영문 대소문자, 숫자, 특수문자를 포함한 8자 이상 20자 이내로 입력해주세요.");
         }
+    }
+
+    private boolean checkPasswordPattern(String password) {
+        return password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)(?=\\S+$).{8,20}$");
     }
 }
