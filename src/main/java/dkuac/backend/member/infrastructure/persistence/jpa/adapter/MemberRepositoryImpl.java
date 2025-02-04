@@ -34,17 +34,12 @@ public class MemberRepositoryImpl implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> findByStudentNumber(int studentNumber) {
-        return memberJpaRepository.findByStudentNumber(studentNumber).map(memberMapper::toDomainEntity);
-    }
-
-    @Override
-    public Optional<Member> findByStudentEmail(String email) {
-        return memberJpaRepository.findByEmail(email).map(memberMapper::toDomainEntity);
-    }
-
-    @Override
-    public Optional<Member> findByStudentName(String name) {
+    public Optional<Member> findByName(String name) {
         return memberJpaRepository.findByName(name).map(memberMapper::toDomainEntity);
+    }
+
+    @Override
+    public Optional<Member> findByEmail(String email) {
+        return memberJpaRepository.findByEmail(email).map(memberMapper::toDomainEntity);
     }
 }
