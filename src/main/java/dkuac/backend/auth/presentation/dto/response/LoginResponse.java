@@ -10,21 +10,16 @@ public record LoginResponse(
         @Schema(description = "액세스 토큰")
         String accessToken
 
-//        @Schema(description = "액세스 토큰 만료 시간")
-//        LocalDateTime expiredTime
 ) {
     public record UserInfo(
             @Schema(description = "사용자 ID", example = "1L")
             Long id,
 
             @Schema(description = "사용자 이름", example = "홍길동")
-            String name,
-
-            @Schema(description = "임원진 여부", example = "true")
-            boolean isStaff
+            String name
     ) {
         public static UserInfo from(Member member) {
-            return new UserInfo(member.getId(), member.getName(), member.isStaff());
+            return new UserInfo(member.getId(), member.getName());
         }
     }
 
